@@ -1,0 +1,31 @@
+{
+  "name": "backendpr",
+  "version": "1.0.0",
+  "description": "learning backend ",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
+  },
+  "keywords": [
+    "javascript",
+    "backend",
+    "emperor"
+  ],
+  "author": "Emperor",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "prettier": "^3.9.6"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^2.11.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.10.1",
+    "mongoose-aggregate-paginate-v2": "^1.1.5",
+    "multer": "^2.4.0"
+  }
+}
