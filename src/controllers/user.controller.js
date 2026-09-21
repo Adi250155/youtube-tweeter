@@ -6,7 +6,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken"
 import mongoose from "mongoose";
 
-//variables functions name should be clear and readable 
+
 const generateAccessAndRefereshTokens = async(userId) =>{
     try {
         const user = await User.findById(userId)
@@ -52,7 +52,7 @@ const registerUser = asyncHandler( async (req, res) => {
     if (existedUser) {
         throw new ApiError(409, "User with email or username already exists")
     }
-    console.log(req.files);
+    //console.log(req.files);
 
     const avatarLocalPath = req.files?.avatar[0]?.path;
     //const coverImageLocalPath = req.files?.coverImage[0]?.path;
@@ -99,9 +99,8 @@ const registerUser = asyncHandler( async (req, res) => {
 } )
 
 const loginUser = asyncHandler(async (req, res) =>{
-    //Steps:
-    //req body -> data
-    //username or email
+    // req body -> data
+    // username or email
     //find the user
     //password check
     //access and referesh token
@@ -114,7 +113,7 @@ const loginUser = asyncHandler(async (req, res) =>{
         throw new ApiError(400, "username or email is required")
     }
     
-    //  if only one is req 
+    // Here is an alternative of above code based on logic discussed in video:
     // if (!(username || email)) {
     //     throw new ApiError(400, "username or email is required")
         
@@ -160,12 +159,11 @@ const loginUser = asyncHandler(async (req, res) =>{
 })
 
 const logoutUser = asyncHandler(async(req, res) => {
-    
     await User.findByIdAndUpdate(
         req.user._id,
         {
             $unset: {
-                refreshToken: 1 // this removes  field from document
+                refreshToken: 1 // this removes the field from document
             }
         },
         {
@@ -260,7 +258,7 @@ const getCurrentUser = asyncHandler(async(req, res) => {
     .json(new ApiResponse(
         200,
         req.user,
-        "Current User fetched successfully"
+        "User fetched successfully"
     ))
 })
 
@@ -275,7 +273,7 @@ const updateAccountDetails = asyncHandler(async(req, res) => {
         req.user?._id,
         {
             $set: {
-                fullName: fullName,
+                fullName,
                 email: email
             }
         },
@@ -295,7 +293,7 @@ const updateUserAvatar = asyncHandler(async(req, res) => {
         throw new ApiError(400, "Avatar file is missing")
     }
 
-    //assignment: delete old image
+    //TODO: delete old image - assignment
 
     const avatar = await uploadOnCloudinary(avatarLocalPath)
 
@@ -328,7 +326,7 @@ const updateUserCoverImage = asyncHandler(async(req, res) => {
         throw new ApiError(400, "Cover image file is missing")
     }
 
-    //assignment: delete old image
+    //TODO: delete old image - assignment
 
 
     const coverImage = await uploadOnCloudinary(coverImageLocalPath)
