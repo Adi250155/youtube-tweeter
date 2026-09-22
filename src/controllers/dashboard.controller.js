@@ -8,6 +8,27 @@ import {asyncHandler} from "../utils/asyncHandler.js"
 
 const getChannelStats = asyncHandler(async (req, res) => {
     // TODO: Get the channel stats like total video views, total subscribers, total videos, total likes etc.
+    /*
+    Get logged-in user's ID
+        ↓
+Find all videos where owner = user ID
+        ↓
+Count videos
+        ↓
+Add views of those videos
+        ↓
+Find subscriptions where channel = user ID
+        ↓
+Count subscribers
+        ↓
+Find likes belonging to those videos
+        ↓
+Count likes
+        ↓
+Return all stats 
+    */
+
+        
 })
 
 const getChannelVideos = asyncHandler(async (req, res) => {
